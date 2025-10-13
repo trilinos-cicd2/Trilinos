@@ -288,18 +288,18 @@ jobs:
         run: |
           mkdir -p /home/Trilinos/src/Trilinos
           mkdir -p /home/Trilinos/build
-      - name: Clone trilinos
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          fetch-depth: 0
-      - name: Repo status
-        run: |
-          git fetch --all
-          pwd
-          ls -lhat
-          git status
-          git branch -vv
-          git branch -a
+#      - name: Clone trilinos
+#        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+#        with:
+#          fetch-depth: 0
+#      - name: Repo status
+#        run: |
+#          git fetch --all
+#          pwd
+#          ls -lhat
+#          git status
+#          git branch -vv
+#          git branch -a
       - name: Output ccache stats
         run: |
           bash -l -c "ccache --show-stats --verbose"
@@ -362,7 +362,7 @@ jobs:
           retention-days: 90
       - name: Summary
         if: ${{ !cancelled() }}	
-        uses: ./.github/actions/summary
+        uses: ./.github/workflows/actions/summary
         with: 
           at2-all-builds: "${AT2_ALL_BUILDS}"
 
