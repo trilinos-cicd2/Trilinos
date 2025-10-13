@@ -362,7 +362,7 @@ jobs:
           retention-days: 90
       - name: Summary
         if: ${{ !cancelled() }}	
-        uses: ./.github/workflows/actions/summary
+        uses: ./.github/workflows/actions/summary/action.yml
         with: 
           at2-all-builds: "${AT2_ALL_BUILDS}"
 
