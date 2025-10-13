@@ -360,12 +360,13 @@ jobs:
           name: ${{ github.job }}-artifacts
           path: /home/runner/artifacts/*
           retention-days: 90
-	  - name: Summary
-	 	if: ${{ !cancelled() }}	
-		uses: ./.github/actions/summary
-		with:
-			at2-all-builds: "${AT2_ALL_BUILDS}"
-	
+      - name: Summary
+        if: ${{ !cancelled() }}	
+        uses: ./.github/actions/summary
+        with: 
+          at2-all-builds: "${AT2_ALL_BUILDS}"
+
+  
 #      - name: Summary
 #        if: ${{ !cancelled() }}
 #        shell: bash -l {0}
