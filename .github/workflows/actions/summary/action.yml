@@ -49,5 +49,6 @@ runs:
         echo "Summary URLs ${AT2_ALL_BUILDS}"
         pwd
         ls
-        echo $AT2_URL
+        env | grep "AT2"
+        echo " Full path: ${AT2_IMAGE_FULLPATH}"
 
