@@ -47,4 +47,7 @@ runs:
         AT2_ALL_FILE="${{ inputs.at2-all-builds-file }}"
         EXTRA_LINKS="${{ inputs.extra-links }}"
         echo "Summary URLs ${AT2_ALL_BUILDS}"
+        pwd
+        ls
+        echo $AT2_URL
 
