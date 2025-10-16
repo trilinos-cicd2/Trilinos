@@ -47,6 +47,7 @@ runs:
 
     - name: "Write summary to $GITHUB_STEP_SUMMARY"
       shell: bash -e {0}
+      working-directory: /home/Trilinos/build
       run: |
         IMAGE="${{ inputs.image }}"
         GENCONFIG_FILE="${{ inputs.genconfig-build-name-file }}"
