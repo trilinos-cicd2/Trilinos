@@ -61,13 +61,13 @@ runs:
         echo " Full path: ${AT2_IMAGE_FULLPATH}"
         echo "## Run Info" >> $GITHUB_STEP_SUMMARY
         echo "Image: ${AT2_IMAGE_FULLPATH:-${AT2_IMAGE:-unknown}}" >> $GITHUB_STEP_SUMMARY
-        echo "GenConfig Build ID: $(cat ./genconfig_build_name.txt)" >> $GITHUB_STEP_SUMMARY
+        # echo "GenConfig Build ID: $(cat ./genconfig_build_name.txt)" >> $GITHUB_STEP_SUMMARY
         echo "## CDash Links" >> $GITHUB_STEP_SUMMARY
         echo "### Current Build" >> $GITHUB_STEP_SUMMARY
-        AT2_URL=$(</home/runner/AT2_URL.txt)
+        # AT2_URL=$(</home/runner/AT2_URL.txt)
         echo $AT2_URL >> $GITHUB_STEP_SUMMARY
         echo "### All Builds" >> $GITHUB_STEP_SUMMARY
-        AT2_ALL_BUILDS=$(</home/runner/AT2_ALL_BUILDS.txt)
+        # AT2_ALL_BUILDS=$(</home/runner/AT2_ALL_BUILDS.txt)
         echo $AT2_ALL_BUILDS >> $GITHUB_STEP_SUMMARY
         echo "## Helpful Links" >> $GITHUB_STEP_SUMMARY
         echo "https://github.com/trilinos/Trilinos/wiki/Reproducing-Pull-Request-Testing-Errors" >> $GITHUB_STEP_SUMMARY
