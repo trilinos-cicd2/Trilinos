@@ -53,8 +53,11 @@ runs:
         ls
         env | grep "AT2"
 
-        # AT2_URL=$(</home/runner/AT2_URL.txt)
-        # AT2_ALL_BUILDS=$(</home/runner/AT2_ALL_BUILDS.txt)
+        echo "https://github.com/orgs/community/discussions/27088" > /home/runner/AT2_URL.txt
+        echo "https://github.com/orgs/community/discussions/27088" > /home/runner/AT2_ALL_BUILDS.txt
+        AT2_URL=$(</home/runner/AT2_URL.txt)
+        AT2_ALL_BUILDS=$(</home/runner/AT2_ALL_BUILDS.txt)
+
         cat <<'EOF' >> "$GITHUB_STEP_SUMMARY"
 
         ## Run Info:
