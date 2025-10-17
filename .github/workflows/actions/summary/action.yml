@@ -49,27 +49,29 @@ runs:
       shell: bash -e {0}
       working-directory: /home/Trilinos/build
       run: |
-        IMAGE="${{ inputs.image }}"
-        GENCONFIG_FILE="${{ inputs.genconfig-build-name-file }}"
-        AT2_URL_FILE="${{ inputs.at2-url-file }}"
-        AT2_ALL_FILE="${{ inputs.at2-all-builds-file }}"
-        EXTRA_LINKS="${{ inputs.extra-links }}"
-        echo "Summary URLs ${AT2_ALL_BUILDS}"
         pwd
         ls
         env | grep "AT2"
-        echo " Full path: ${AT2_IMAGE_FULLPATH}"
-        echo "## Run Info" >> $GITHUB_STEP_SUMMARY
-        echo "Image: ${AT2_IMAGE_FULLPATH:-${AT2_IMAGE:-unknown}}" >> $GITHUB_STEP_SUMMARY
-        # echo "GenConfig Build ID: $(cat ./genconfig_build_name.txt)" >> $GITHUB_STEP_SUMMARY
-        echo "## CDash Links" >> $GITHUB_STEP_SUMMARY
-        echo "### Current Build" >> $GITHUB_STEP_SUMMARY
+
         # AT2_URL=$(</home/runner/AT2_URL.txt)
-        echo $AT2_URL >> $GITHUB_STEP_SUMMARY
-        echo "### All Builds" >> $GITHUB_STEP_SUMMARY
         # AT2_ALL_BUILDS=$(</home/runner/AT2_ALL_BUILDS.txt)
-        echo $AT2_ALL_BUILDS >> $GITHUB_STEP_SUMMARY
-        echo "## Helpful Links" >> $GITHUB_STEP_SUMMARY
-        echo "https://github.com/trilinos/Trilinos/wiki/Reproducing-Pull-Request-Testing-Errors" >> $GITHUB_STEP_SUMMARY
-        echo "https://github.com/trilinos/Trilinos/wiki/Containers" >> $GITHUB_STEP_SUMMARY
-        echo "https://gitlab-ex.sandia.gov/trilinos-project/trilinos-containers/-/wikis/Containers-at-Sandia" >> $GITHUB_STEP_SUMMARY
+        cat <<'EOF' >> "$GITHUB_STEP_SUMMARY"
+
+        ## Run Info:
+        Image:
+        ```
+        ${AT2_IMAGE_FULL_PATH:-${AT2_IMAGE:-unknown}}
+        ```
+        GenConfig Build ID:
+        ```
+        ${GENCONFIG_BUILD_NAME:-unknown}
+        ```
+
+        ### CDash Links
+        - [Current Build](${AT2_URL:-unknown})
+        - [All Builds](${AT2_ALL_BUILDS:-unknown})
+        ### Helpful Wiki Links
+        - [How to Reproducing Pull Request Testing Errors](https://github.com/trilinos/Trilinos/wiki/Reproducing-Pull-Request-Testing-Errors)
+        - [How to use Trilinos Containers](https://github.com/trilinos/Trilinos/wiki/Containers)
+        - [Containers at Sandia](https://gitlab-ex.sandia.gov/trilinos-project/trilinos-containers/-/wikis/Containers-at-Sandia)
+        EOF
