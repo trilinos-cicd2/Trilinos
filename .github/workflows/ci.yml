@@ -49,6 +49,10 @@ on:
         description: 'Extra arguments to be used when calling PullRequestLinuxDriverTest.py'
         required: false
         type: string
+      caller-job-name:
+        description: 'Name of the calling GitHub Actions job'
+        required: false
+        type: string
 
 jobs:
   build-test:
