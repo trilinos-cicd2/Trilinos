@@ -9,6 +9,10 @@ on:
       genconfig-string:
         required: true
         type: string
+      image:
+        description: 'Link to the registry image. Used for pr_reproducer script.'
+        required: true
+        type: string
       target-branch:
         required: false
         type: string
@@ -42,6 +46,10 @@ on:
         type: number
         default: -1
       skip-create-packageenables:
+        required: false
+        type: boolean
+        default: false
+      skip-run-tests:
         required: false
         type: boolean
         default: false
@@ -137,6 +145,13 @@ jobs:
             skip_create_packageenabels=""
           fi
 
+          if [ "${{ inputs.skip-run-tests }}" == "true" ]
+          then
+            skip_run_tests="--skip-run-tests"
+          else
+            skip_run_tests=""
+          fi
+
           if [ -n "${{ inputs.extra-pr-driver-args }}" ]
           then
             extra_pr_driver_args="${{ inputs.extra-pr-driver-args }}"
@@ -165,6 +180,7 @@ jobs:
             ${max_cores_allowed} \
             ${slots_per_gpu} \
             ${skip_create_packageenables} \
+            ${skip_run_tests} \
             ${extra_pr_driver_args}
       - name: Filtered build error logs
         if: success() || failure()
